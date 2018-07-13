@@ -25,6 +25,8 @@
 <title>/users/signup.jsp</title>
 </head>
 <body>
+<jsp:include page="../include_files/header.jsp" />
+<jsp:include page="../include_files/css_loading2.jsp" />
 <h3>회원 가입 요청 결과 페이지</h3>
 <%if(isSuccess){%>
 	<p> <strong><%=id %></strong> 회원님 가입되었습니다</p>

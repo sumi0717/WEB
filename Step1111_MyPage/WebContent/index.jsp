@@ -3,7 +3,6 @@
     <%
 	// context path 읽어오기
 	String cPath=request.getContextPath();
-
 	// session에 "id"라는 키값으로 담겨 있는 문자열을 읽어와 본다
 	String id=(String)session.getAttribute("id");
 	/*
@@ -26,73 +25,27 @@
   <head>
 
     <meta charset="utf-8">
+    <jsp:include page="/include_files/css_loading2.jsp" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title>망한 홈페이지</title>
     <style>
-    	#page-top{
+    	body{
     		background-color: #CFCFCF;
     	}
     </style>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/vendor/bootstrap/css/bootstrap.min.css" />
-    
-
-    <!-- Custom fonts for this template -->
-    <link href="${pageContext.request.contextPath }/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="${pageContext.request.contextPath }/https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='${pageContext.request.contextPath }/https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='${pageContext.request.contextPath }/https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='${pageContext.request.contextPath }/https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    <!-- Custom styles for this template -->
-    <link href="${pageContext.request.contextPath }/resources/css/agency.min.css" rel="stylesheet">
-
   </head>
 
   <body id="page-top">
-   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" >
-<div class="container">
-        <a class="navbar-brand" href="#page-top" style="font-size: 20px; color: orange">HomePage</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="users/signup_form.jsp" style="font-size: 20px; color: pink">Join Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="users/loginform.jsp?url=<%=cPath%>/index.jsp" style="font-size: 20px; color: pink">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="board/list.jsp" style="font-size: 20px; color: pink">Board</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="dropzone/upload_form.jsp" style="font-size: 20px; color: pink">Gallery</a>
-            </li>
-             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="file/list.jsp" style="font-size: 20px; color: pink">Files</a>
-            </li>
-           
-          </ul>
-        </div>
-      </div>
-      </nav>
+  <jsp:include page="/include_files/header.jsp" />
+   
 
- <div class="navbar navbar-inverse">
-	<div class="navbar-header">
-	<ul class="nav navbar-nav">
-</ul>
-	</div>
-</div>
+ 
    <!-- Contact -->
-    <section id="contact">
+    <section id="contact" style="margin-top: 130px">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -126,13 +79,12 @@
         </div>
       </div>
     </section>
-
     <!-- Services -->
     <section id="services">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Services</h2>
+            <h2 class="section-heading text-uppercase">PHOTO</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
           </div>
         </div>
@@ -164,7 +116,6 @@
         </div>
       </div>
     </section>
-
     <!-- Portfolio Grid -->
     <section class="bg-light" id="portfolio">
       <div class="container">
@@ -262,10 +213,8 @@
         </div>
       </div>
     </section>
-
     <!-- Team -->
     
-
     <!-- Clients -->
     <section class="py-5">
       <div class="container">
@@ -293,51 +242,9 @@
         </div>
       </div>
     </section>
-
-   
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <span class="copyright">Copyright &copy; 인생 망함</span>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline social-buttons">
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-facebook"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <i class="fa fa-linkedin"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li class="list-inline-item">
-                <a href="#">Privacy Policy</a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">Terms of Use</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+   <jsp:include page="/include_files/footer.jsp" /> 
 
     <!-- Portfolio Modals -->
-
     <!-- Modal 1 -->
     <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
@@ -371,7 +278,6 @@
         </div>
       </div>
     </div>
-
     <!-- Modal 2 -->
     <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
@@ -405,7 +311,6 @@
         </div>
       </div>
     </div>
-
     <!-- Modal 3 -->
     <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
@@ -439,7 +344,6 @@
         </div>
       </div>
     </div>
-
     <!-- Modal 4 -->
     <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
@@ -473,7 +377,6 @@
         </div>
       </div>
     </div>
-
     <!-- Modal 5 -->
     <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
@@ -513,21 +416,15 @@
 	if(loginF)
 	</script>
    
-
     <!-- Bootstrap core JavaScript -->
     <script src="${pageContext.request.contextPath }/resources/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Plugin JavaScript -->
     <script src="${pageContext.request.contextPath }/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
     <!-- Contact form JavaScript -->
     <script src="${pageContext.request.contextPath }js/jqBootstrapValidation.js"></script>
     <script src="${pageContext.request.contextPath }js/contact_me.js"></script>
-
     <!-- Custom scripts for this template -->
     <script src="${pageContext.request.contextPath }js/agency.min.js"></script>
-
   </body>
-
 </html>

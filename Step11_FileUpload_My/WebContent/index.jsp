@@ -10,12 +10,7 @@
 <%
 	String id=(String)session.getAttribute("id");
 %>
-<%if(id!=null){ %>
-	<p><strong><%=id %></strong> 님 로그인중...</p>
-	<a href="users/logout.jsp">로그아웃</a>
-<%}else{%>
-	<a href="users/loginform.jsp">로그인</a>
-<%}%>
+
 
 <h3>인덱스 페이지 입니다.</h3>
 <ul>

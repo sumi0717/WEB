@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
 </head>
 <body>
+<jsp:include page="../include_files/header.jsp" />
+<jsp:include page="../include_files/css_loading2.jsp" />
 <%
 		List<FileDto> list = FileDao.getInstance().getList();
 		
@@ -26,7 +28,7 @@
 		String cPath=request.getContextPath();
 		
 	%>
-<div class="container">
+<div class="container" style="margin-top: 150px;">
 	<%if(id!=null && !id.equals("")) {%>
 	<p><strong><%=id %></strong>로그인 중..</p>
 	<%} %>
@@ -75,3 +77,4 @@
 
 </body>
 </html>
+<jsp:include page="/include_files/footer.jsp" /> 

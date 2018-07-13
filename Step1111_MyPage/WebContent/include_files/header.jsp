@@ -3,6 +3,8 @@
 <div class="header" style="background-color:gray;">
 <%
 	String id=(String)session.getAttribute("id");
+String cPath=request.getContextPath();
+String strRoot=request.getSession().getServletContext().getRealPath("/");
 %>
 <%if(id!=null){ %>
 	<p><strong><%=id %></strong> 님 로그인중...</p>
@@ -10,17 +12,46 @@
 <%}else{%>
 	<a href="users/loginform.jsp">로그인</a>
 <%}%>
-<img src="images/쌀국수.jpg" alt="" />
-<h3>인덱스 페이지 입니다.</h3>
-<div class="navbar navbar-inverse">
-	<div class="navbar-header">
-	<ul class="nav navbar-nav">
-	<li><a href="users/signup_form.jsp">회원가입</a></li>
-	<li><a href="file/list.jsp">자료실</a></li>
-	<li><a href="gallery/list.jsp">사진 겔러리</a></li>
-	<li><a href="board/list.jsp">게시글 목록 보기</a></li>
-	<li><a href="dropzone/upload_form.jsp">drop zone 테스트</a></li>
-</ul>
-	</div>
+
+<%
+	// navbar.jsp 페이지를 include 하면서 전달된 파라미터를 읽어온다
+	String thisPage=request.getParameter("thisPage");
+%>
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-inverse fixed-top" style="color: #24FCFF" id="mainNav" >
+<div class="container">
+        <a class="navbar-brand" href="<%=strRoot %>/index.jsp" style="font-size: 20px; color: #24FCFF; margin-top: 10px">HomePage</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link " href="users/signup_form.jsp" style="font-size: 20px; color: pink">Join Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="users/loginform.jsp?url=<%=cPath%>/index.jsp" style="font-size: 20px; color: pink">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="board/list.jsp" style="font-size: 20px; color: pink">Board</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="dropzone/upload_form.jsp" style="font-size: 20px; color: pink">Gallery</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link " href="file/list.jsp" style="font-size: 20px; color: pink">Files</a>
+            </li>
+           
+          </ul>
+        </div>
+      </div>
+      </nav>
+
+
 </div>
+
 </div>
