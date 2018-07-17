@@ -38,6 +38,14 @@
 	<%}%>
 	</tbody>
 </table>
-<a href="../index.jsp">인덱스로 돌아가기</a>
+<a href="<%=request.getContextPath() %>/index.jsp">Home</a>
+<script>
+	function deleteConfirm(num){
+		var isDelete=confirm(num+" 번 파일을 삭제 하시겠습니까?");
+		if(isDelete){
+			location.href="delete.do?num="+num;
+		}
+	}
+</script>
 </body>
 </html>
