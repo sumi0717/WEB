@@ -64,7 +64,8 @@ public class LoginFilter implements Filter{//1.
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method 
+		
 		
 	}
 

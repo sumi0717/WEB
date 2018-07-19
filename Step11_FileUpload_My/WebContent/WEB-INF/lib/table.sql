@@ -12,12 +12,11 @@ regdate DATE --등록일
 
 CREATE SEQUENCE board_file_seq; 
 
-CREATE TABLE board_gallery(
-num NUMBER PRIMARY KEY,
-writer VARCHAR2(100),
-caption VARCHAR2(200),
-imagePath VARCHAR2(100),
-regdate DATE
+CREATE TABLE friends(
+num NUMBER PRIMARY KEY, --번호
+name VARCHAR2(100), --이름
+phone VARCHAR2(200), --전화번호
+regdate DATE --등록일
 );
 
-CREATE SEQUENCE board_gallery_seq;
+CREATE SEQUENCE friends_seq;

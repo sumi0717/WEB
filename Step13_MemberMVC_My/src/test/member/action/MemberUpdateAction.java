@@ -16,7 +16,7 @@ public class MemberUpdateAction extends Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		// post 방식 폼 전송되는 파라미터 추출
 		int num=Integer.parseInt(request.getParameter("num"));
-		String name=request.getParameter("name");
+		String name=request.getParameter("re");
 		String addr=request.getParameter("addr");
 		// MemberDto 객체에 담아서
 		MemberDto dto=new MemberDto(num, name, addr);

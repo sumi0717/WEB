@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,19 +20,18 @@
 	*/
 %>
 <h3>인덱스 페이지입니다</h3>
-<%if(id!=null){ //id가 null이 아니라는 의미는, 
-				//session에 id 키값으로 담겨있는 문자열이 있다는 뜻 
-				// 즉, 로그인 중인 사람이 있다는 소리임%>
-	<p> <strong><a href="users/private/info.jsp"><%=id %></a></strong> 님 로그인 중...</p>
-	<a href="users/logout.jsp">로그아웃</a>
-<%} %>
+<c:if test="${not empty id }">
+	<p> <strong><a href="users/private/info.do">${id }</a></strong> 님 로그인 중...</p>
+	<a href="users/logout.do">로그아웃</a>
+</c:if>
+
 <ul>
-	<li><a href="users/signup_form.jsp">회원가입</a></li>
-	<li><a href="users/loginform.jsp?url=<%=cPath%>/index.jsp">로그인</a></li>
+	<li><a href="users/signup_form.do">회원가입</a></li>
+	<li><a href="users/loginform.do?url=${pageContext.request.contextPath }/index.jsp">로그인</a></li>
 							<!--  /Step08_Auth_My/index.jsp  -->
-	<li><a href="market/buy.jsp">상품 구입</a></li>
-	<li><a href="market/buy2.jsp">상품 구입2</a></li>
-	<li><a href="market/buy3.jsp">상품 구입3</a></li>
+	<li><a href="market/buy.do">상품 구입</a></li>
+	<li><a href="market/buy2.do">상품 구입2</a></li>
+	<li><a href="market/buy3.do">상품 구입3</a></li>
 </ul>
 </body>
 </html>

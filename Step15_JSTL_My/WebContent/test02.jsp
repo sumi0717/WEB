@@ -27,19 +27,23 @@
 </c:if>
 <% session.setAttribute("id", "gura"); 
 //세션 영역에 id라는 키값으로 저장된 값이 null(empty)가 아니면 p가 출력
-//session.scope.id나 마찬가지 %>
+//session.scope.id나 마찬가지 
+
+/* true면 when 내부 코딩이 출력되고,
+		 false면 otherwise 내부 코딩이 출력된다 */
+
+%>
 <c:if test="${not empty id }">
 	<p>${id }님 로그인 중..</p>
 </c:if>
 
 <c:choose>
-	<!-- true면 when 내부 코딩이 출력되고,
-		 false면 otherwise 내부 코딩이 출력된다 -->
+	
 	<c:when test="${not empty id }">
 		<p>${id }님 로그인 중..</p>
 	</c:when>
 	<c:otherwise>
-		<a href=""></a>
+		<a href="loginform.jsp">로그인 하러 가기</a>
 	</c:otherwise>
 
 </c:choose>
