@@ -31,8 +31,9 @@
 			<td>${tmp.addr }</td>
 			<td><a href="updateform.do?num=${tmp.num }">수정</a></td>
 			<td><a href="javascript:deleteConfirm(${tmp.num })">삭제</a></td>
+			<% //앵커에 자바스크립트 이용할때는 javascript: 꼭 붙여줘야함!!!%>
 		</tr>
-	</c:forEach> 
+	</c:forEach>
 	</tbody>
 </table>
 <a href="${pageContext.request.contextPath }/index.jsp">Home</a>

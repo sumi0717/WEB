@@ -34,9 +34,12 @@ public class LoginAction extends Action{
 		String url=request.getParameter("url");
 		
 		if(isLoginSuccess) {
+			System.out.println("ok");
 			//세션 객체를 이용해서 로그인 처리 하기
 			request.getSession().setAttribute("id", id);
 			//세션은 request.getSession으로 얻어내야 함!!! session에다 담는게 로그인 처리.
+		}else {
+			System.out.println("no");
 		}
 		
 		//Model을 request에 담기

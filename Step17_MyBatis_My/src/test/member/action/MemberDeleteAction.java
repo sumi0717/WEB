@@ -18,8 +18,7 @@ public class MemberDeleteAction extends Action{
 		//DB에서 해당 회원 삭제
 		
 		boolean isSuccess=MemberDao.getInstance().delete(num);
-		/*
-		if(isSuccess) {
+		/*if(isSuccess) {
 			request.setAttribute("msg", num+" 번 회원을 삭제함");
 		}else {
 			request.setAttribute("msg", "삭제 실패!");
