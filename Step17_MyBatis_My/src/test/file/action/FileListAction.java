@@ -42,7 +42,7 @@ public class FileListAction extends Action {
 		int startPageNum = 1 + ((pageNum - 1) / PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;
 		// 끝 페이지 번호
 		int endPageNum = startPageNum + PAGE_DISPLAY_COUNT - 1;
-		// 끝 페이지 번호가 잘못된 값이라면dd
+		// 끝 페이지 번호가 잘못된 값이라면!
 		if (totalPageCount < endPageNum) {
 			endPageNum = totalPageCount; // 보정해준다.
 		}
