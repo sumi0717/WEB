@@ -12,7 +12,7 @@
 	String url=request.getParameter("url");
 	if(url==null){//만일 전달되지 않으면
 		//인덱스 페이지로 이동 되도록 한다
-		url=request.getContextPath()+";/index.jsp";
+		url=request.getContextPath()+"/";
 						//최상위 경로므로, /index.jsp 안붙이고
 						//+"/";만 해도 알아서 index 페이지로 이동되긴 함
 	}

@@ -21,7 +21,7 @@ public class MemberUpdateformAction extends Action{
 		// request 에 담기
 		request.setAttribute("dto", dto);
 		// view 페이지로 forward 이동
-		return new ActionForward("/views/member/updateform.jsp");
+		return new ActionForward("/views/member/updateform.do");
 	}
 	
 }

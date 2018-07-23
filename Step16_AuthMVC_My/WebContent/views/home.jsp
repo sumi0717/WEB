@@ -19,9 +19,6 @@
    <li><a href="users/signup_form.do">회원 가입</a></li>
    <li><a href="users/loginform.do">로그인</a></li>
 </ul>
-<ul>
-
-</ul>
 
 <h3>공지 사항 입니다.</h3>
 <ul>
