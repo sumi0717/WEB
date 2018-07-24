@@ -1,6 +1,9 @@
 package test.controller;
 
 import test.action.HomeAction;
+import test.cafe.action.CafeInsertAction;
+import test.cafe.action.CafeInsertformAction;
+import test.cafe.action.CafeListAction;
 import test.file.action.FileDeleteAction;
 import test.file.action.FileDownloadAction;
 import test.file.action.FileListAction;
@@ -90,6 +93,13 @@ public class UserActionFactory {
 			action=new FileDownloadAction();
 		}else if(command.equals("/file/private/delete")) {
 			action=new FileDeleteAction();
+		}else if(command.equals("/cafe/list")) {
+			action=new CafeListAction();
+		}else if(command.equals("/cafe/private/insertform")) {
+			action=new CafeInsertformAction();
+								//경로가 아니고 명령의 개념
+		}else if(command.equals("/cafe/private/insert")){
+			action=new CafeInsertAction();
 		}
 		
 		return action;

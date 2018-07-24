@@ -72,54 +72,46 @@
 		</table>
 
 		<!-- 페이징 처리 -->
-		<div class="page_display" style="text-align: center;">
-		<ul class="pagination">
-		<c:choose>
-			<c:when test="${startPageNum ne 1 }">
-				<li>
-					<a href="list.do?pageNum=${startPageNum-1 }">&laquo;</a>
-				</li>
-			</c:when>
-			<c:otherwise>
-				<li class="disabled">
-					<a href="javas cript:">&laquo;</a>
-				</li>
-			</c:otherwise>
-		</c:choose>
-		<c:forEach var="i" begin="${startPageNum }"
-			end="${endPageNum }">
-			<c:choose>
-				<c:when test="${i eq pageNum }">
-					<li class="active">
-						<a href="list.do?pageNum=${i }">${i }</a>
-					</li>
-				</c:when>
-				<c:otherwise>
-					<li>
-						<a href="list.do?pageNum=${i }">${i }</a>
-					</li>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		<c:choose>
-			<c:when test="${endPageNum lt totalPageCount }">
-				<li>
-					<a href="list.do?pageNum=${endPageNum+1 }">&raquo;</a>
-				</li>
-			</c:when>
-			<c:otherwise>
-				<li class="disabled">
-					<a class="muted" href="javascript:">&raquo;</a>
-				</li>
-			</c:otherwise>
-		</c:choose>		
-	</ul>
-			
+		<div class="page_display">
+			<ul class="pagination">
+				<c:choose>
+					<c:when test="${startPageNum ne 1 }">
+						<!-- ne는 not equal -->
+						<li><a href="list.do?pageNum=${startPageNum-1 }">Prev</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a class="muted" href="javascript:">Prev</a></li>
+						<!-- 자바스크립트 콜론만 해두면, 실행할 자바 스크립트가 없으니까 어떤 동작도 하지 않음. -->
+					</c:otherwise>
+				</c:choose>
+
+				<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+					<c:choose>
+						<c:when test="${i eq pageNum }">
+							<li><a class="active" href="list.do?pageNum=${i }">${i }</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="list.do?pageNum=${i }">${i }</a>
+							<li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+
+				<c:choose>
+					<c:when test="${endPageNum lt totalPageCount }">
+						<!-- lt는 < -->
+						<li><a href="list.do?pageNum=${endPageNum+1 }">Next</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a class="muted" href="javascript:">Next</a>
+						<li>
+							<!-- 자바스크립트 콜론만 해두면, 실행할 자바 스크립트가 없으니까 어떤 동작도 하지 않음. -->
+					</c:otherwise>
+				</c:choose>
+			</ul>
 		</div>
 	</div>
-	<script src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
 	<script>
-	
 		//삭제 확인을 하는 함수 
 		function deleteConfirm(num) {
 			var isDelete = confirm(num + "번 파일을 삭제 하시겠습니까?");
@@ -127,8 +119,6 @@
 				location.href = "private/delete.do?num=" + num;
 			}
 		}
-		
-	
 	</script>
 </body>
 </html>

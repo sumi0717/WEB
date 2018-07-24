@@ -14,17 +14,17 @@ import test.file.dto.FileDto;
  * 파일 목록을 출력해주는 액션
  */
 public class FileListAction extends Action {
-	// 한 페이지에 나타낼 로우의 갯수
+	// 한 페이지에 나타낼 로우의 갯수/ input
 	private static final int PAGE_ROW_COUNT = 5;
 	// 하단 디스플레이 페이지 갯수
-	private static final int PAGE_DISPLAY_COUNT = 5;
+	private static final int PAGE_DISPLAY_COUNT = 3;
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		// 보여줄 페이지의 번호
 		int pageNum = 1; // 디폴트, /file/list.do?pageNum=3 이렇게 쓰기 위한 로직
 		// 보여줄 페이지의 번호가 파라미터로 전달되는지 읽기
-		String strPageNum = request.getParameter("pageNum");
+		String strPageNum = request.getParameter("pageNum"); // static final int 입력값을 바탕으로
 		if (strPageNum != null) {// 페이지 번호가 파라미터로 넘어온다면
 			// 페이지 번호를 설정한다
 			pageNum = Integer.parseInt(strPageNum);
@@ -54,9 +54,15 @@ public class FileListAction extends Action {
 		dto.setEndRowNum(endRowNum);
 
 		// 1. 파일 목록을 불러와서
-		List<FileDto> list = FileDao.getInstance().getList();
+		List<FileDto> list = FileDao.getInstance().getList(dto);
+		
 		// 2. request에 담고
 		request.setAttribute("list", list);
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("startPageNum", startPageNum);
+		request.setAttribute("endPageNum", endPageNum);
+		request.setAttribute("totalPageCount", totalPageCount);
+		
 		// 3. view 페이지로 forward이동
 		return new ActionForward("/views/file/list.jsp");
 	}

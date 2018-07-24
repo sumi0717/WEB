@@ -1,48 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="file">
-	<delete id="delete" parameterType="int">
-		DELETE FROM board_file
-		WHERE num=#{num}
-	</delete>
-	<update id="addDownCount" parameterType="int">
-		UPDATE board_file
-		SET downCount=downCount+1
-		WHERE num=#{num}
-	</update>
-	<select id="getData" parameterType="int"
-		resultType="test.file.dto.FileDto">
-		SELECT num,writer,title,downCount,saveFileName,
-			orgFileName,fileSize,
-			TO_CHAR(regdate, 'YYYY.MM.DD AM HH:MI') AS regdate
-		FROM board_file
-		WHERE num=#{num}
-	</select>
 	
-	<insert id="insert" parameterType="test.file.dto.FileDto">
-		INSERT INTO board_file
-		(num,writer,title,downCount,orgFileName,saveFileName,
-			fileSize,regdate)
-		VALUES(board_file_seq.NEXTVAL,#{writer},#{title},
-		#{downCount}, #{orgFileName}, #{saveFileName}, #{fileSize},
-			SYSDATE)
-	</insert>
-	
-	<select id="getList" resultType="test.file.dto.FileDto">
-		SELECT *
-		FROM (SELECT *, ROWNUM rnum 
-			  FROM ( SELECT num,writer,title,downCount,saveFileName,
-					orgFileName,fileSize,
-					TO_CHAR(regdate, 'YYYY.MM.DD AM HH:MI') AS regdate
-					FROM board_file
-					ORDER BY num DESC )
-			)
-		WHERE rnum BETWEEN #{ } AND #{ }			
-	</select>
-	
-	<select id="getCount" resultType="int">
-		SELECT NVL(MAX(ROWNUM), 0) <!-- 자료가 1도 없는 경우엔 0을 리턴하도록. -->
-		<!-- ROWNUM중에 가장 큰 게 전체 로우의 갯수가 됨 -->
-		FROM board_file
-	</select>
+	<!-- 자주 사용하는 sql문을 미리 정의해 놓기 -->
+	<sql id="fileColumn">
+		num,writer,title,downCount,saveFileName,
+         orgFileName,fileSize,
+         TO_CHAR(regdate, 'YYYY.MM.DD AM HH:MI') AS regdate
+	</sql>
+
+   <delete id="delete" parameterType="int">
+      DELETE FROM board_file
+      WHERE num=#{num}
+   </delete>
+   <update id="addDownCount" parameterType="int">
+      UPDATE board_file
+      SET downCount=downCount+1
+      WHERE num=#{num}
+   </update>
+   <select id="getData" parameterType="int"
+      resultType="test.file.dto.FileDto">
+      SELECT <include refid="fileColumn"/>
+      FROM board_file
+      WHERE num=#{num}
+   </select>
+   
+   <insert id="insert" parameterType="test.file.dto.FileDto">
+      INSERT INTO board_file
+      (num,writer,title,downCount,orgFileName,saveFileName,
+         fileSize,regdate)
+      VALUES(board_file_seq.NEXTVAL,#{writer},#{title},
+      #{downCount}, #{orgFileName}, #{saveFileName}, #{fileSize},
+         SYSDATE)
+   </insert>
+   
+   <!-- 최종적으로 선택되는 칼럽의 갯수는 총 9개가 됨. --> <!-- dto의 필드명과 칼럼 이름이 일치해야 됨. -->
+   <!-- 별칭명이 dto에 없을 땐, 셀렉트 되지 않음. 셀렉트 시키려면 dto를 수정해서 별칭명을 삽입해야함 -->
+   <!-- alius 붙이기 --> <!-- rownum의 별칭은 rnum -->
+   <select id="getList" resultType="test.file.dto.FileDto">
+      SELECT *
+      FROM (SELECT result1.*, ROWNUM rnum 
+           FROM ( SELECT <include refid="fileColumn"/>
+               FROM board_file
+               ORDER BY num DESC ) result1 
+         ) 
+      WHERE rnum BETWEEN #{startRowNum } AND #{endRowNum }         
+   </select>
+   
+   <!-- NVL의 의미는 혹시 초기값, 자료가 1도 없는 경우엔 0을 리턴하도록.(여기선 row가 없는 경우) -->
+      <!-- ROWNUM중에 가장 큰 게 전체 로우의 갯수가 됨 -->
+   <select id="getCount" resultType="int">
+      SELECT NVL(MAX(ROWNUM), 0) 
+      FROM board_file
+   </select>
 </mapper>
