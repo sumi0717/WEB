@@ -85,7 +85,7 @@
 	
 	<c:forEach var="tmp" items="${Clist }">
 					<tr>
-						<td>${tmp.num }</td>
+						
 						<td>${tmp.writer }</td>
 						<td>${tmp.content }</td>
 						<td>${tmp.regdate }</td>

@@ -1,9 +1,13 @@
 package test.cafe.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import test.cafe.dao.CafeCommentDao;
 import test.cafe.dao.CafeDao;
+import test.cafe.dto.CafeCommentDto;
 import test.cafe.dto.CafeDto;
 import test.controller.Action;
 import test.controller.ActionForward;
@@ -38,6 +42,7 @@ public class CafeDetailAction extends Action{
 		//글 번호도 dto에 담는다
 		//글 번호를 dto에 담아서 전달하는 이유는, 키워드를 포함해야 하기 떄문.
 		dto.setNum(num);
+		int tNum= dto.getNum();
 		
 		// 2 CafeDao를 이용해서 글 정보를 읽어와서  
 		CafeDto resultDto=CafeDao.getInstance().getData(dto);
@@ -53,6 +58,10 @@ public class CafeDetailAction extends Action{
 			isLogin=true;
 		}
 		request.setAttribute("isLogin", isLogin);
+		
+		//댓글 목록
+		List<CafeCommentDto> Clist = CafeCommentDao.getInstance().getList(tNum);
+		request.setAttribute("Clist", Clist);
 		
 		// 4 view 페이지로 forward 이동해서 응답
 		return new ActionForward("/views/cafe/private/detail.jsp");
