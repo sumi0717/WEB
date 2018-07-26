@@ -1,9 +1,15 @@
 package test.controller;
 
 import test.action.HomeAction;
+import test.cafe.action.CafeCommentInsertAction;
+import test.cafe.action.CafeCommentListAction;
+import test.cafe.action.CafeDeleteAction;
+import test.cafe.action.CafeDetailAction;
 import test.cafe.action.CafeInsertAction;
 import test.cafe.action.CafeInsertformAction;
 import test.cafe.action.CafeListAction;
+import test.cafe.action.CafeUpdateAction;
+import test.cafe.action.CafeUpdateformAction;
 import test.file.action.FileDeleteAction;
 import test.file.action.FileDownloadAction;
 import test.file.action.FileListAction;
@@ -100,6 +106,18 @@ public class UserActionFactory {
 								//경로가 아니고 명령의 개념
 		}else if(command.equals("/cafe/private/insert")){
 			action=new CafeInsertAction();
+		}else if(command.equals("/cafe/detail")){
+			action=new CafeDetailAction();
+		}else if(command.equals("/cafe/private/delete")){
+			action=new CafeDeleteAction();
+		}else if(command.equals("/cafe/private/updateform")) {
+			action=new CafeUpdateformAction();
+		}else if(command.equals("/cafe/private/update")) {
+			action=new CafeUpdateAction();
+		}else if(command.equals("/cafe/comment_insert")) {
+			action=new CafeCommentInsertAction();
+		}else if(command.equals("/cafe/comment_list")) {
+			action=new CafeCommentListAction();
 		}
 		
 		return action;

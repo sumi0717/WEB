@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
  */
 @WebServlet
 public class ActionForward extends HttpServlet{
+		
 		//이동 경로 
 		private String path;
 		//리다일렉트 이동 여부 

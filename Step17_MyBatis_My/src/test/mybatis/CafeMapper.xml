@@ -13,19 +13,88 @@
 		VALUES(board_cafe_seq.NEXTVAL, #{writer}, #{title},
 			#{content}, #{viewCount}, SYSDATE)
 	</insert>
-	<select id="getCount" resultType="int">
+	
+	<!-- CafeDto가 없으면 where절 존재 x 
+	CafelistAction에서 keyword 실행 순서가 어디로 가냐에 따라 WHERE 절 달라짐
+	따라서, WHERE절을 다이나믹 쿼리로 만듦.
+	조건에 맞는 데이터만 페이징 처리해서 줄 세움.-->
+	<select id="getCount" resultType="int" parameterType="cafeDto">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM board_cafe
+		<where>
+			<if test="writer != null">
+				OR writer LIKE '%' || #{writer} || '%'
+			</if>
+			<if test="title != null">
+				OR title LIKE '%' || #{title} || '%'
+			</if>
+			<if test="content != null">
+				OR content LIKE '%' || #{content} || '%'
+			</if>
+		</where>
 	</select>
+	
+	<!-- WHERE절, 조건에 맞는 데이터만 추려내서 페이징 처리함. 
+	다 null이면 WHERE절이 구성이 안되고, 구성이 안된다는 것은 모든 데이터가 출력된단 뜻.-->
 	<select id="getList" parameterType="cafeDto"
 		resultType="cafeDto">
 		SELECT *
 		FROM (SELECT result1.*, ROWNUM rnum
 			  FROM ( SELECT <include refid="cafeColumn"/>
 					FROM board_cafe
+					<where>
+						<if test="writer != null">
+							OR writer LIKE '%' || #{writer} || '%'
+						</if>
+						<if test="title != null">
+							OR title LIKE '%' || #{title} || '%'
+						</if>
+						<if test="content != null">
+							OR content LIKE '%' || #{content} || '%'
+						</if>
+					</where>
 					ORDER BY num DESC ) result1
 			  )
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
 	</select>
+	
+	<select id="getData" parameterType="int" 
+		resultType="cafeDto">
+		SELECT result1.*
+		FROM	(  SELECT <include refid="cafeColumn"/>,
+					LAG(num, 1, 0) OVER(ORDER BY num DESC) prevNum,
+					LEAD(num, 1, 0) OVER(ORDER BY num DESC)	nextNum
+				FROM board_cafe
+				<where>
+					<if test="writer != null">
+						OR writer LIKE '%' || #{writer} || '%'
+					</if>
+					<if test="title != null">
+						OR title LIKE '%' || #{title} || '%'
+					</if>
+					<if test="content != null">
+						OR content LIKE '%' || #{content} || '%'
+					</if>
+				</where>
+				ORDER BY num DESC ) result1
+		WHERE num=#{num}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM board_cafe
+		WHERE num=#{num}
+	</delete>
+	
+	<update id="update" parameterType="cafeDto">
+		UPDATE board_cafe
+		SET title=#{title}, content=#{content}
+		WHERE num=#{num}
+	</update>
+	
+	<update id="addViewCount" parameterType="int">
+		UPDATE board_cafe
+		SET viewCount=viewCount+1
+		WHERE num=#{num}
+	</update>
 </mapper>
 

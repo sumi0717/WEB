@@ -80,6 +80,7 @@ if (ServletFileUpload.isMultipartContent(request)){
                                 // img 태그의 title 옵션에 들어갈 원본파일명
                     return3 += "&sFileName="+ name;
                     return3 += "&sFileURL="+contextPath+"/upload/"+realFileNm;
+                    								//업로드 폴더가 있어야 하는 이유
                 }
             }else {
                   return3 += "&errstr=error";
