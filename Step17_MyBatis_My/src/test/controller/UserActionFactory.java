@@ -114,8 +114,10 @@ public class UserActionFactory {
 			action=new CafeUpdateformAction();
 		}else if(command.equals("/cafe/private/update")) {
 			action=new CafeUpdateAction();
-		}else if(command.equals("/cafe/comment_insert")) {
+		}else if(command.equals("/cafe/private/comment_insert")) {
 			action=new CafeCommentInsertAction();
+		}else if(command.equals("/cafe/private/comment_delete")) {
+			action=new CafeDeleteAction();
 		}
 		
 		return action;

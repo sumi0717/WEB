@@ -24,7 +24,7 @@ public class CafeUpdateformAction extends Action{
 		request.setAttribute("dto", resultDto);
 		
 		// 4. 응답하기
-		return new ActionForward("/views/cafe/private/updateform.jsp");
+		return new ActionForward("/views/cafe/updateform.jsp");
 	}
 
 }

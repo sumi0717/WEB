@@ -37,7 +37,8 @@ public class CafeCommentInsertAction extends Action{
 		CafeCommentDao.getInstance().insert(dto);
 		
 		//댓글을 단 원글 자세히 보기 페이지로 리다일렉트 이동 응답
-		ActionForward af = new ActionForward("/cafe/detail.do?num="+ref_group);
+		ActionForward af=
+				new ActionForward("/cafe/detail.do?num="+ref_group);
 		af.setRedirect(true);
 		return af;
 	}

@@ -13,7 +13,7 @@ public class CafeInsertformAction extends Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		return new ActionForward("/views/cafe/private/insertform.jsp");
+		return new ActionForward("/views/cafe/insertform.jsp");
 	}
 
 }

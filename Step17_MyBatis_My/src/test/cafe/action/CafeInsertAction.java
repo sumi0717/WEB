@@ -33,7 +33,7 @@ public class CafeInsertAction extends Action{
 		//request에 성공 여부 담기
 		request.setAttribute("isSuccess", isSuccess);
 		
-		return new ActionForward("/views/cafe/private/insert.jsp");
+		return new ActionForward("/views/cafe/insert.jsp");
 	}
 
 }

@@ -16,6 +16,8 @@
 		<p>글 삭제 실패!</p>
 	</c:otherwise>
 </c:choose>
-<a href="../list.do">글 목록 보기</a>
+<a href="/cafe/private/detail.do?num="+ref_group">글 목록 보기</a>
+
+
 </body>
 </html>

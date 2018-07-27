@@ -14,10 +14,18 @@
 	</select>
 	
 	<select id="getList" parameterType="int" resultType="test.cafe.dto.CafeCommentDto">
-		SELECT num, writer, content, target_id, ref_group, comment_group, regdate
+		SELECT num, writer, content, target_id, ref_group, comment_group, 
+				TO_CHAR(regdate, 'YYYY.MM.DD HH24:MM') regdate
 		FROM board_cafe_comment
 		WHERE ref_group=#{num}
 		ORDER BY comment_group ASC, num ASC
 	</select>
+	<!-- comment_group에 대해서 정렬 1차 하고, 그 상태에서 num으로 정렬 2차 함. -->
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM board_cafe_comment
+		WHERE num=#{num}
+	</delete>
+	
 </mapper>
 

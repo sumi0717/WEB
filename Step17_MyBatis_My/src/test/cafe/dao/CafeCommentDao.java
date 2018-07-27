@@ -20,6 +20,25 @@ public class CafeCommentDao {
 		}
 		return dao;
 	}
+	//댓글 삭제하는 메소드
+	public boolean delete(int num) {
+		SqlSession session = null;
+		int flag = 0;
+		try {
+			session = factory.openSession(true);
+			flag=session.delete("cafeComment.delete", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		if (flag > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	//댓글 목록을 리턴하는 메소드
 	public List<CafeCommentDto> getList(int ref_group){
 		SqlSession session = null;

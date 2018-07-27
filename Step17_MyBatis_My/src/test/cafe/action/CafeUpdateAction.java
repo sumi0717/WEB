@@ -26,7 +26,7 @@ public class CafeUpdateAction extends Action{
 		//request에 결과 담고
 		request.setAttribute("isSuccess", isSuccess);
 		//응답
-		return new ActionForward("/views/cafe/private/update.jsp");
+		return new ActionForward("/views/cafe/update.jsp");
 	}
 
 }

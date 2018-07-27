@@ -59,12 +59,17 @@ public class CafeDetailAction extends Action{
 		}
 		request.setAttribute("isLogin", isLogin);
 		
-		//댓글 목록
-		List<CafeCommentDto> Clist = CafeCommentDao.getInstance().getList(tNum);
-		request.setAttribute("Clist", Clist);
+		//댓글 목록 리턴하기
+		//List<CafeCommentDto> Clist = CafeCommentDao.getInstance().getList(tNum);
+		//request.setAttribute("Clist", Clist);
+		
+		//선생님 방법
+		List<CafeCommentDto> commentList=
+				CafeCommentDao.getInstance().getList(num);
+		request.setAttribute("commentList", commentList);
 		
 		// 4 view 페이지로 forward 이동해서 응답
-		return new ActionForward("/views/cafe/private/detail.jsp");
+		return new ActionForward("/views/cafe/detail.jsp");
 	}
 
 }

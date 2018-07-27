@@ -18,7 +18,7 @@ public class CafeDeleteAction extends Action{
 		boolean isSuccess=CafeDao.getInstance().delete(num);
 		// 3. 결과를 reqeust에 담고
 		request.setAttribute("isSuccess", isSuccess);
-		return new ActionForward("/views/cafe/private/delete.jsp");
+		return new ActionForward("/views/cafe/delete.jsp");
 	}
 
 }
