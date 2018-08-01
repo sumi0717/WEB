@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gallery">
+	<insert id="insert" parameterType="test.gallery.dto.GalleryDto">
+		INSERT INTO board_gallery
+		(num, writer, caption, imagePath, regdate)
+		VALUES(board_gallery_seq.NEXTVAL,#{writer},#{caption},#{imagePath},SYSDATE)
+	</insert>	
+	
+	<select id="getList" resultType="test.gallery.dto.GalleryDto">
+		SELECT num,writer,caption, imagePath,
+		TO_CHAR(regdate, 'YYYY.MM.DD AM HH:MI') AS regdate
+		FROM board_gallery
+		ORDER BY num DESC
+	</select>
+	
+</mapper>
+

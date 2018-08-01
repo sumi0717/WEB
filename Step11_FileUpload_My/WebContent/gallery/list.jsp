@@ -24,7 +24,6 @@
 	<%for(GalleryDto tmp:list){%>
 	<div class="col-xs-6 col-sm-3">
 		<h4><%=tmp.getCaption() %></h4>
-		<a href=""></a>
 		<img src="<%=cPath%><%=tmp.getImagePath()%>" 
 			class="img-responsive img-thumbnail"/>
 		<p>

@@ -15,7 +15,7 @@ public class FileDao {
 	public static FileDao getInstance() {
 		if(dao==null) {
 			dao=new FileDao();
-			factory=SqlMapConfig.getSqlSession();
+			
 		}
 		return dao;
 	}

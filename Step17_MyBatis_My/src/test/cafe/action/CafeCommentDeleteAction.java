@@ -10,39 +10,25 @@ import test.cafe.dto.CafeDto;
 import test.controller.Action;
 import test.controller.ActionForward;
 
-public class CafeCommentDeleteAction extends Action{
+public class CafeCommentDeleteAction extends Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		//폼전송 파라미터 읽어오기
-				String writer=request.getParameter("writer");
-				int ref_group=Integer
-					.parseInt(request.getParameter("ref_group"));
-				String target_id=request.getParameter("target_id");
-				String content=request.getParameter("content");
-				//null 이면 원글에 단 댓글이다. 
-				String comment_group=request.getParameter("comment_group");
-				//저장할 댓글의 번호를 미리 얻어낸다.
-				int seq=CafeCommentDao.getInstance().getSequence();
-				//댓글을 DB 에 저장
-				CafeCommentDto dto=new CafeCommentDto();
-				dto.setNum(seq);
-				dto.setWriter(writer);
-				dto.setTarget_id(target_id);
-				dto.setContent(content);
-				dto.setRef_group(ref_group);
-				if(comment_group==null) {//원글의 댓글인 경우
-					dto.setComment_group(seq);
-				}else {//댓글의 댓글인 경우 
-					dto.setComment_group(Integer.parseInt(comment_group));
-				}
-				CafeCommentDao.getInstance().delete(seq);
-				
-				//댓글을 단 원글 자세히 보기 페이지로 리다일렉트 이동 응답
-				ActionForward af=
-						new ActionForward("/cafe/detail.do?num="+ref_group);
-				af.setRedirect(true);
-				return af;
-			}
+		   int num=Integer.parseInt(request.getParameter("num")); //댓글의 번호
+		      int tNum=Integer.parseInt(request.getParameter("tNum")); //글 번호
+		      //2.cafeCommentDao를 이용해서 글 삭제
+		      boolean isSuccess=CafeCommentDao.getInstance().delete(num);
+		      
+		      //3. 결과를 request에 담고
+		      request.setAttribute("tNum", tNum);
+		      request.setAttribute("isSuccess", isSuccess);
+		      
+		      //4. view 페이지로 forward 이동해서 응답
+		      ActionForward af=
+		               new ActionForward("/cafe/detail.do?num="+tNum);
+		         af.setRedirect(true);
+		         return af;
+	
+	}
 
 }

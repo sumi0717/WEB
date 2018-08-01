@@ -59,13 +59,12 @@ public class CafeDetailAction extends Action{
 		}
 		request.setAttribute("isLogin", isLogin);
 		
-		//댓글 목록 리턴하기
-		//List<CafeCommentDto> Clist = CafeCommentDao.getInstance().getList(tNum);
-		//request.setAttribute("Clist", Clist);
+		//댓글 목록 리턴하기 원주방법 차이는 tnum(textnum)을 따로 변수 선언한후~
+		//List<CafeCommentDto> commentList = CafeCommentDao.getInstance().getList(tNum);
+		//request.setAttribute("commentList", commentList);
 		
 		//선생님 방법
-		List<CafeCommentDto> commentList=
-				CafeCommentDao.getInstance().getList(num);
+		List<CafeCommentDto> commentList= CafeCommentDao.getInstance().getList(num);
 		request.setAttribute("commentList", commentList);
 		
 		// 4 view 페이지로 forward 이동해서 응답

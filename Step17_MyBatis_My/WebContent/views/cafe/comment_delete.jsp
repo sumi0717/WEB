@@ -5,19 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>/views/cafe/delete.jsp</title>
+<title>코멘트 삭제 페이지</title>
 </head>
 <body>
 <c:choose>
 	<c:when test="${isSuccess }">
-		<p>글을 삭제했습니다</p>
+		<p>댓글을 삭제했습니다</p>
 	</c:when>
 	<c:otherwise>
-		<p>글 삭제 실패!</p>
+		<p>댓글 삭제 실패!</p>
 	</c:otherwise>
 </c:choose>
-<a href="../list.do">글 목록 보기</a>글 목록 보기</a>
-
-
+<a href="/cafe/detail.do?num="+ref_group">글 목록 보기</a>
 </body>
 </html>

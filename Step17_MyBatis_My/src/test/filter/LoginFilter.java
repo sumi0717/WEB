@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 //2. 
 			//절대경로로 설정해야함 꼭 !
 			//로그인 해야지만 해당경로 이용 가능하도록 설정하는 코드!!
-@WebFilter({"/users/private/*", "/file/private/*", "/cafe/private/*"})
+@WebFilter({"/users/private/*", "/file/private/*", "/cafe/private/*", "/gallery/private/*"})
 public class LoginFilter implements Filter{//1. 
 
 	@Override

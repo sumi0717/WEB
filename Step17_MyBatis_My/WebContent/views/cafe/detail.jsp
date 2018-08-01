@@ -94,7 +94,7 @@
 		</div>
 		<h3>글 자세히 보기 페이지</h3>
 		<c:if test="${sessionScope.id eq dto.writer }">
-			<a href="updateform.do?num=${dto.num }">수정</a>
+			<a href="private/updateform.do?num=${dto.num }">수정</a>
 			<a href="javascript:deleteConfirm()">삭제</a>
 			<script>
 				function deleteConfirm() {
@@ -137,20 +137,19 @@
 									src="${pageContext.request.contextPath }/resources/images/user_image.gif" />
 								<span>${tmp.writer }</span> <span>${tmp.regdate }</span> <a
 									href="javascript:" class="reply_link">답글</a> | <a href="">신고</a>
-								<c:if test="${sessionScope.id eq dto.writer }">
-									<a href="">수정</a>
-									<a href="javascript:deleteConfirm()">삭제</a>
+								<c:if test="${sessionScope.id eq tmp.writer }">
+									<a
+										href="private/comment_updateform.do?num=${tmp.num }&textnum=${dto.num}">수정</a>
+									<a href="javascript:commentdeleteConfirm()">삭제</a>
 									<script>
-										function deleteConfirm() {
-											var isDelete = confirm("글을 삭제 하시겠습니까?");
+										function commentdeleteConfirm() {
+											var isDelete = confirm("댓글을 삭제 하시겠습니까?");
 											if (isDelete) {
-												location.href = "CommentDelete.do";
+												location.href = "private/comment_delete.do?num=${tmp.num}&tNum=${dto.num}";
 											}
 										}
 									</script>
 								</c:if>
-
-
 							</dt>
 							<dd>
 								<c:if test="${tmp.num ne tmp.comment_group }">
@@ -161,7 +160,7 @@
 								<!-- pre 요소 안에 뿌리면 개행기호 자연스럽게 맞춰줌 -->
 							</dd>
 						</dl>
-						<form action="private/comment_insert.do" method="post">
+						<form action="comment_insert.do" method="post">
 							<!-- 덧글 작성자 -->
 							<input type="hidden" name="writer" value="${id }" />
 							<!-- 덧글 그룹 -->
@@ -180,7 +179,7 @@
 
 			<!-- 원글에 댓글을 작성할수 있는 폼 -->
 			<div class="comment_form">
-				<form action="private/comment_insert.do" method="post">
+				<form action="comment_insert.do" method="post">
 					<input type="hidden" name="writer" value="${id }" /> <input
 						type="hidden" name="ref_group" value="${dto.num }" /> <input
 						type="hidden" name="target_id" value="${dto.writer }" />
@@ -195,10 +194,7 @@
 		src="${pageContext.request.contextPath }/resources/js/jquery-3.3.1.js"></script>
 	<script>
 		//로그인 했는지 여부
-		var isLogin = $
-		{
-			isLogin
-		};
+		var isLogin = ${isLogin};
 
 		//댓글 전송 이벤트가 일어 났을때 실행할 함수 등록
 		$(".comment_form > form, .comment form")

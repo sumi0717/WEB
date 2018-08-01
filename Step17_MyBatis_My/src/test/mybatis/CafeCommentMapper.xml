@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cafeComment">
+
 	<insert id="insert" parameterType="commentDto">
 		INSERT INTO board_cafe_comment
 		(num, writer, content, target_id, ref_group, comment_group, regdate)
@@ -27,5 +28,19 @@
 		WHERE num=#{num}
 	</delete>
 	
+	<update id="update" parameterType="test.cafe.dto.CafeCommentDto">
+		UPDATE board_cafe_comment
+		SET content=#{content}
+		WHERE num=#{num}
+	</update>
+	
+	<select id="getData" parameterType="int"
+		resultType="commentdto">
+		SELECT num, writer, content, target_id, 
+		ref_group, comment_group, 
+		TO_CHAR(regdate, 'yyyy.mm.dd am HH:MI') AS regdate
+		FROM board_cafe_comment
+		WHERE num=#{num}
+	</select>
 </mapper>
 

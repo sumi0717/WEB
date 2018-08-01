@@ -5,17 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>/views/cafe/CommentDelete.jsp</title>
+<title>코멘트 수정 페이지</title>
 </head>
 <body>
-<c:choose>
-	<c:when test="${isSuccess }">
-		<p>글을 삭제했습니다</p>
-	</c:when>
-	<c:otherwise>
-		<p>글 삭제 실패!</p>
-	</c:otherwise>
-</c:choose>
-<a href="../list.do">글 목록 보기</a>
+
 </body>
 </html>
