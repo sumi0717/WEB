@@ -24,7 +24,6 @@ public class MemberLIstServlet extends HttpServlet{
 		MemberDao member=MemberDao.getInstance();
 		List<MemberDto> list=member.getList();
 		useList(list);
-		
 		//	[클라이언트한테 출력해주기]
 		
 		

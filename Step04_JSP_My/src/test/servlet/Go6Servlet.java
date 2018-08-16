@@ -17,7 +17,7 @@ public class Go6Servlet extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1번 회원의 정보를 읽어온다
-		MemberDto dto=MemberDao.getInstance().getData(30);
+		MemberDto dto=MemberDao.getInstance().getData(56);
 		//MemberDto 객체를 request에 dto라는 키 값으로 담는다
 		request.setAttribute("dto", dto);
 		//forward 이동

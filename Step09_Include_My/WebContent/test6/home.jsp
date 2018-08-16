@@ -18,7 +18,10 @@
 	request.getParameter("thisPage")해서 읽어올 수 있다
 	
  --%>
-<jsp:include page="navbar.jsp">
+ <%
+	request.setAttribute("thisPage", "home");
+%>
+<jsp:include page="navbar2.jsp">
 	<jsp:param value="home" name="thisPage"/>
 </jsp:include>
 
